@@ -57,10 +57,10 @@ class SQLite3ccConan(ConanFile):
         if self.settings.os == "Windows":
             self.copy(pattern="*.lib", dst="lib", src=self._build_dir, keep_path=False)
             self.copy(pattern="*.dll", dst="bin", src=self._build_dir, keep_path=False)
+            self.copy(pattern="*.pdb", dst="lib", src=self._build_dir, keep_path=False)
         else:
             self.copy(pattern="*.a", dst="lib", src=self._build_dir, keep_path=False)
             self.copy(pattern="*.lib", dst="lib", src=self._build_dir, keep_path=False)
-            self.copy(pattern="*.pdb", dst="lib", src=self._build_dir, keep_path=False)
 
     def package_info(self):
         self.cpp_info.libs.append("sqlite3cc")
