@@ -7,14 +7,18 @@ from conans.tools import download, untargz
 class SQLite3ccConan(ConanFile):
     name = "sqlite3cc"
     version = "0.1.1"
-    requires = "sqlite3/3.15.2@jgsogo/stable"
     settings = "os", "compiler", "build_type", "arch"
     url = "https://github.com/jgsogo/conan-sqlite3cc"
     license = "GNU Lesser General Public License v.3"
     exports = ["FindSQLite3cc.cmake", "CMakeLists.txt", ]
-
+    generators = "cmake"
+    
     _build_dir = "build"
     
+    def requirements(self):
+        self.requires.add("Boost/1.60.0@lasote/stable")
+        self.requires.add("sqlite3/3.15.2@jgsogo/stable")
+
     @property
     def source_dir(self):
         return "{}-{}".format(self.name, self.version)
@@ -38,10 +42,15 @@ class SQLite3ccConan(ConanFile):
         build_command = "cd {} && cmake --build . {}".format(self._build_dir, cmake.build_config)
         self.output.info(build_command)
         self.run(build_command)
+        
+        # Run tests, always
+        command = "cd {} && tests".format(os.path.join(self._build_dir, "bin"))
+        self.output.info(command)
+        self.run(command)
 
     def package(self):
         self.copy("FindSQLite3cc.cmake", ".", ".")
-        self.copy("*.h", dst="include", src=os.path.jioin(self.source_dir, "include"))
+        self.copy("*.h", dst="include", src=os.path.join(self.source_dir, "include"))
         if self.settings.os == "Windows":
             self.copy(pattern="*.lib", dst="lib", src=self._build_dir, keep_path=False)
             self.copy(pattern="*.dll", dst="bin", src=self._build_dir, keep_path=False)

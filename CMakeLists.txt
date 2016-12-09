@@ -4,6 +4,7 @@ cmake_minimum_required(VERSION 2.8)
 include(../conanbuildinfo.cmake)
 conan_basic_setup()
 
+# The library itself
 file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/include/*.h)
 file(GLOB SOURCES ${CMAKE_SOURCE_DIR}/src/*.cc)
 
@@ -13,4 +14,9 @@ target_link_libraries(sqlite3cc ${CONAN_LIBS})
 
 install(FILES ${HEADERS} DESTINATION include)
 install(TARGETS sqlite3cc LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
+
+# Tests
+file(GLOB TESTS_SRC ${CMAKE_SOURCE_DIR}/test/*.cc)
+add_executable(tests ${TESTS_SRC})
+target_link_libraries(tests sqlite3cc ${CONAN_LIBS})
 
