@@ -1,7 +1,7 @@
 PROJECT(sqlite3cc)
 cmake_minimum_required(VERSION 2.8)
 
-include(${CMAKE_BINARY_DIR}/conanbuildinfo.cmake)
+include(../conanbuildinfo.cmake)
 conan_basic_setup()
 
 file(GLOB HEADERS ${CMAKE_SOURCE_DIR}/include/*.h)

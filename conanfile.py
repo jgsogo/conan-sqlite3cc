@@ -1,5 +1,5 @@
 
-import os, shutil
+import os, shutil, sys
 from conans import ConanFile, CMake
 from conans.tools import download, untargz
 
@@ -7,7 +7,7 @@ from conans.tools import download, untargz
 class SQLite3ccConan(ConanFile):
     name = "sqlite3cc"
     version = "0.1.1"
-    requires = "sqlite3/3.15.2@jgsogo/stable",
+    requires = "sqlite3/3.15.2@jgsogo/stable"
     settings = "os", "compiler", "build_type", "arch"
     url = "https://github.com/jgsogo/conan-sqlite3cc"
     license = "GNU Lesser General Public License v.3"
@@ -20,18 +20,10 @@ class SQLite3ccConan(ConanFile):
         return "{}-{}".format(self.name, self.version)
 
     def source(self):
-        zip_name = '{}-{}.tar.xz'.format(self.name, self.version)
+        zip_name = '{}-{}.tar.gz'.format(self.name, self.version)
         url = 'http://ed.am/dev/sqlite3cc/{}'.format(zip_name)
         download(url, zip_name)
-
-        import tarfile
-        import pylzma
-        import contextlib
-        with contextlib.closing(pylzma.LZMAFile(zip_name)) as xz:
-            with tarfile.open(fileobj=xz) as f:
-                f.extractall('.')
-
-        #untargz(zip_name)
+        untargz(zip_name)
         os.unlink(zip_name)
 
     def build(self):
