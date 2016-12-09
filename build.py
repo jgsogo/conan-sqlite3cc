@@ -1,7 +1,7 @@
 
 import os
 from conan.packager import ConanMultiPackager
-from conanfile import SQLite3Conan
+from conanfile import SQLite3ccConan
 
 username = os.getenv("CONAN_USERNAME", "jgsogo")
 reference = os.getenv("CONAN_REFERENCE", "{}/{}".format(SQLite3ccConan.name, SQLite3ccConan.version))
