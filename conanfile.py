@@ -44,7 +44,7 @@ class SQLite3ccConan(ConanFile):
         self.run(build_command)
         
         # Run tests, always
-        command = "cd {} && tests".format(os.path.join(self._build_dir, "bin"))
+        command = "cd {} && tests".format(self._build_dir)
         self.output.info(command)
         self.run(command)
 
