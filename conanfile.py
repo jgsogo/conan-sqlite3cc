@@ -44,6 +44,9 @@ class SQLite3ccConan(ConanFile):
         self.run(build_command)
         
         # Run tests, always
+        for dirpath, subdirs, files in os.walk(_build_dir):
+            for x in files:
+                print(os.path.join(dirpath, x))
         command = "cd {} && tests".format(self._build_dir)
         self.output.info(command)
         self.run(command)
