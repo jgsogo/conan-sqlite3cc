@@ -21,3 +21,5 @@ fi
 
 pip install conan_package_tools # It install conan too
 conan user
+pip install --allow-external bzr --allow-unverified bzr
+
