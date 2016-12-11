@@ -26,7 +26,7 @@ class SQLite3ccConan(ConanFile):
 
     def source(self):
         # Get code from bzr@launchpad
-        self.run("bzr branch lp:sqlite3cc {}".format(self.source_dir))
+        self.run("bzr branch lp:sqlite3cc --hardlink {}".format(self.source_dir))
         self.run("cd {} && bzr log -r-1".format(self.source_dir))
 
     def build(self):
