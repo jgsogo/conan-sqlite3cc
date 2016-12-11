@@ -6,12 +6,13 @@ from conans.tools import download, untargz
 
 class SQLite3ccConan(ConanFile):
     name = "sqlite3cc"
-    version = "0.1.1"
+    version = "dev"
     settings = "os", "compiler", "build_type", "arch"
     url = "https://github.com/jgsogo/conan-sqlite3cc"
     license = "GNU Lesser General Public License v.3"
     exports = ["FindSQLite3cc.cmake", "CMakeLists.txt", ]
     generators = "cmake"
+    build = "always"
     
     _build_dir = "build"
     
@@ -24,11 +25,9 @@ class SQLite3ccConan(ConanFile):
         return "{}-{}".format(self.name, self.version)
 
     def source(self):
-        zip_name = '{}-{}.tar.gz'.format(self.name, self.version)
-        url = 'http://ed.am/dev/sqlite3cc/{}'.format(zip_name)
-        download(url, zip_name)
-        untargz(zip_name)
-        os.unlink(zip_name)
+        # Get code from bzr@launchpad
+        self.run("bzr branch lp:sqlite3cc {}".format(self.source_dir))
+        self.run("cd {} && bzr log -r-1".format(self.source_dir))
 
     def build(self):
         cmake = CMake(self.settings)

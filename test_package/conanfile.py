@@ -9,7 +9,7 @@ username = os.getenv("CONAN_USERNAME", "jgsogo")
 
 class HelloReuseConan(ConanFile):
     settings = "os", "compiler", "build_type", "arch"
-    requires = "sqlite3cc/0.1.1@%s/%s" % (username, channel)
+    requires = "sqlite3cc/dev@%s/%s" % (username, channel)
     generators = "cmake"
 
     def build(self):
