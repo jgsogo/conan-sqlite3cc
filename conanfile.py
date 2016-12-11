@@ -45,9 +45,9 @@ class SQLite3ccConan(ConanFile):
         
         # Run tests, always
         if self.settings.os == "Windows":
-            command = "cd {} && tests.exe".format(os.path.join(self._build_dir, "bin"))
+            command = "cd {} && test_blob.exe && test_main.exe".format(os.path.join(self._build_dir, "bin"))
         else:
-            command = "cd {} && ./tests".format(os.path.join(self._build_dir, "bin"))
+            command = "cd {} && ./test_blog && ./test_main".format(os.path.join(self._build_dir, "bin"))
         self.output.info(command)
         self.run(command)
 
