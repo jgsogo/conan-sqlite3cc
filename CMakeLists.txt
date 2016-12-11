@@ -16,7 +16,9 @@ install(FILES ${HEADERS} DESTINATION include)
 install(TARGETS sqlite3cc LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 
 # Tests
-file(GLOB TESTS_SRC ${CMAKE_SOURCE_DIR}/test/*.cc)
-add_executable(tests ${TESTS_SRC})
-target_link_libraries(tests sqlite3cc ${CONAN_LIBS})
+add_executable(test_main ${CMAKE_SOURCE_DIR}/test/test-main.cc)
+target_link_libraries(test_main sqlite3cc ${CONAN_LIBS})
+
+add_executable(test_blob ${CMAKE_SOURCE_DIR}/test/test-blob.cc)
+target_link_libraries(test_blob sqlite3cc ${CONAN_LIBS})
 
