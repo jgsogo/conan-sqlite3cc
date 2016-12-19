@@ -1,18 +1,24 @@
 
-import os, shutil, sys
+import os
+import re
+import shutil
 from conans import ConanFile, CMake
 from conans.tools import download, untargz
+
+VERSION = "master"
+RELEASE_VERSION = re.compile("^\d+\.\d+(\.\d+)?$")  # Matching version
 
 
 class SQLite3ccConan(ConanFile):
     name = "sqlite3cc"
-    version = "dev"
+    version = VERSION
     settings = "os", "compiler", "build_type", "arch"
     url = "https://github.com/jgsogo/conan-sqlite3cc"
     license = "GNU Lesser General Public License v.3"
     exports = ["FindSQLite3cc.cmake", "CMakeLists.txt", ]
     generators = "cmake"
-    build = "always"
+    build = "always" if not RELEASE_VERSION.match(VERSION) else "missing"
+    description = """The sqlite3cc library is a C++ wrapper around the excellent SQLite 3 library"""
     
     _build_dir = "build"
     
@@ -25,9 +31,15 @@ class SQLite3ccConan(ConanFile):
         return "{}-{}".format(self.name, self.version)
 
     def source(self):
-        # Get code from bzr@launchpad
-        self.run("bzr branch lp:~jgsogo/sqlite3cc/master --hardlink {}".format(self.source_dir))
-        self.run("cd {} && bzr log -r-1".format(self.source_dir))
+        if RELEASE_VERSION.match(self.version):
+            zip_name = "sqlite3cc-{version}.tar.gz".format(version=self.version)
+            download("http://ed.am/dev/sqlite3cc/{}".format(zip_name), zip_name)
+            untargz(zip_name)
+            os.unlink(zip_name)
+        else:
+            # Get code from bzr@launchpad
+            self.run("bzr branch lp:~jgsogo/sqlite3cc/{} --hardlink {}".format(self.version, self.source_dir))
+            self.run("cd {} && bzr log -r-1".format(self.source_dir))
 
     def build(self):
         cmake = CMake(self.settings)
@@ -66,4 +78,6 @@ class SQLite3ccConan(ConanFile):
         if not self.settings.os == "Windows":
             self.cpp_info.libs.append("pthread")
             self.cpp_info.libs.append("dl")
+
+
 

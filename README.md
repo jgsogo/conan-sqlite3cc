@@ -1,3 +1,0 @@
-
-# conan-sqlite3cc
-
