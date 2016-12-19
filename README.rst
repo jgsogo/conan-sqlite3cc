@@ -1,7 +1,7 @@
 Conan-SQLite3cc
 ===============
 
-This is just a `conan.io  <http://conan.io>` recipe for `sqlite3cc <http://ed.am/dev/sqlite3cc>` library.
+This is just a `conan.io  <http://conan.io>`__ recipe for `sqlite3cc <http://ed.am/dev/sqlite3cc>`__ library.
 
 +------------------------+----------------------+
 | **master (linux/osx)** | **master (windows)** |
