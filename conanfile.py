@@ -5,7 +5,7 @@ import shutil
 from conans import ConanFile, CMake
 from conans.tools import download, untargz
 
-VERSION = "master"
+VERSION = "0.1.1"
 RELEASE_VERSION = re.compile("^\d+\.\d+(\.\d+)?$")  # Matching version number
 
 
