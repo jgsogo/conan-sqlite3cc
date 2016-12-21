@@ -50,4 +50,10 @@ It is recommended to use the Tim Marston last official release.
    :target: https://travis-ci.org/jgsogo/conan-sqlite3cc
 .. |appveyor release/0.1.1| image:: https://ci.appveyor.com/api/projects/status/ppgdurgjt3jqfrpj/branch/release/0.1.1?svg=true
    :target: https://ci.appveyor.com/project/jgsogo/conan-sqlite3cc/
+
+
+License
+-------
+
+`MIT LICENSE <./LICENSE>`__
  
