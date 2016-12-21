@@ -21,21 +21,22 @@ Branches
 There are several branches on this repo:
 
 * **master**: it's linked against jgsogo's master branch at Launchpad (`here <https://code.launchpad.net/~jgsogo/sqlite3cc/master>`__). Last sources available are downloaded and compiled every time the recipe is used.
-  Write a `conanfile.txt`:
+  Write a ``conanfile.txt``:
 
   .. code-block::
 
      [requires]
      sqlite3cc/master@jgsogo/stable
  
-* **release/x.y.z**: uses Tim Marston's relesed package with the same numbering (`here <http://ed.am/dev/sqlite3cc>`__).
-  Write a `conanfile.txt`:
+* **release/x.y.z**: uses Tim Marston's relesed package with the same numbering (`here <http://ed.am/dev/sqlite3cc>`__) (`changelog <http://ed.am/dev/sqlite3cc/NEWS>`__).
  
   +----------------------+------------------------+--------------------------+
   | **release/x.y.z**    | **linux/osx**          | **windows**              |
   +======================+========================+==========================+
   | release/0.1.1        | |travis release/0.1.1| | |appveyor release/0.1.1| |
   +----------------------+------------------------+--------------------------+
+ 
+  Write a ``conanfile.txt``:
  
   .. code-block::
  
