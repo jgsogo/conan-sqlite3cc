@@ -19,6 +19,3 @@ install(TARGETS sqlite3cc LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 add_executable(test_main ${CMAKE_SOURCE_DIR}/test/test-main.cc)
 target_link_libraries(test_main sqlite3cc ${CONAN_LIBS})
 
-add_executable(test_blob ${CMAKE_SOURCE_DIR}/test/test-blob.cc)
-target_link_libraries(test_blob sqlite3cc ${CONAN_LIBS})
-
