@@ -47,9 +47,9 @@ It is recommended to use the Tim Marston last official release.
 
 
 .. |travis release/0.1.1| image:: https://travis-ci.org/jgsogo/conan-sqlite3cc.svg?branch=release%2F0.1.1
-   :target: https://travis-ci.org/jgsogo/conan-sqlite3cc
+   :target: https://travis-ci.org/jgsogo/conan-sqlite3cc/branches
 .. |appveyor release/0.1.1| image:: https://ci.appveyor.com/api/projects/status/ppgdurgjt3jqfrpj/branch/release/0.1.1?svg=true
-   :target: https://ci.appveyor.com/project/jgsogo/conan-sqlite3cc/
+   :target: https://ci.appveyor.com/project/jgsogo/conan-sqlite3cc/history
 
 
 License
