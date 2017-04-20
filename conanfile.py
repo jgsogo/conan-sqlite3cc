@@ -24,7 +24,7 @@ class SQLite3ccConan(ConanFile):
     
     def requirements(self):
         self.requires.add("Boost/1.60.0@lasote/stable")
-        self.requires.add("sqlite3/3.15.2@jgsogo/stable")
+        self.requires.add("sqlite3/3.18.0@jgsogo/stable")
 
     @property
     def source_dir(self):
