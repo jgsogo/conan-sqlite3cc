@@ -6,7 +6,7 @@ from conans import ConanFile, CMake
 from conans.tools import download, untargz, SystemPackageTool
 
 VERSION = "master"
-RELEASE_VERSION = re.compile("^\d+\.\d+(\.\d+)?$")  # Matching version number
+RELEASE_VERSION = re.compile(r'^\d+\.\d+(\.\d+)?$')  # Matching version number
 
 
 class SQLite3ccConan(ConanFile):
