@@ -27,7 +27,7 @@ class SQLite3ccConan(ConanFile):
         self.requires.add("sqlite3/3.18.0@jgsogo/stable")
 
     def system_requirements(self):
-        if os_info.is_linux:
+        if os_info.is_linux and not RELEASE_VERSION.match(self.version):
             installer = SystemPackageTool()
             installer.update()
             installer.install("bzr")
