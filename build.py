@@ -10,6 +10,9 @@ reference = os.getenv("CONAN_REFERENCE", "{}/{}".format(SQLite3ccConan.name, SQL
 if __name__ == "__main__":
     builder = ConanMultiPackager(username=username,
                                  reference=reference,
+                                 visual_versions=["14",],
+                                 gcc_versions = ["5.4", "6.3",],
+                                 apple_clang_versions = ["7.3", "8.1",],
                                  stable_branch_pattern="master|release\/\d+\.\d+(\.\d+)?",
                                  args="--build=missing")
     builder.add_common_builds()
