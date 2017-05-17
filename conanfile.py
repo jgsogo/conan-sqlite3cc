@@ -3,7 +3,7 @@ import os
 import re
 import shutil
 from conans import ConanFile, CMake
-from conans.tools import download, untargz, SystemPackageTool
+from conans.tools import download, untargz, SystemPackageTool, os_info
 
 VERSION = "master"
 RELEASE_VERSION = re.compile(r'^\d+\.\d+(\.\d+)?$')  # Matching version number
