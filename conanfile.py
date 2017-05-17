@@ -3,7 +3,7 @@ import os
 import re
 import shutil
 from conans import ConanFile, CMake
-from conans.tools import download, untargz
+from conans.tools import download, untargz, SystemPackageTool
 
 VERSION = "master"
 RELEASE_VERSION = re.compile("^\d+\.\d+(\.\d+)?$")  # Matching version number
@@ -25,6 +25,12 @@ class SQLite3ccConan(ConanFile):
     def requirements(self):
         self.requires.add("Boost/1.62.0@lasote/stable")
         self.requires.add("sqlite3/3.18.0@jgsogo/stable")
+
+    def system_requirements(self):
+        if os_info.is_linux:
+            installer = SystemPackageTool()
+            installer.update()
+            installer.install("bzr")
 
     @property
     def source_dir(self):
