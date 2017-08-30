@@ -3,10 +3,10 @@ import os
 import re
 import shutil
 from conans import ConanFile, CMake
-from conans.tools import download, untargz
+from conans.tools import download, untargz, SystemPackageTool, os_info
 
 VERSION = "0.1.1"
-RELEASE_VERSION = re.compile("^\d+\.\d+(\.\d+)?$")  # Matching version number
+RELEASE_VERSION = re.compile(r'^\d+\.\d+(\.\d+)?$')  # Matching version number
 
 
 class SQLite3ccConan(ConanFile):
@@ -23,8 +23,14 @@ class SQLite3ccConan(ConanFile):
     _build_dir = "build"
     
     def requirements(self):
-        self.requires.add("Boost/1.60.0@lasote/stable")
-        self.requires.add("sqlite3/3.15.2@jgsogo/stable")
+        self.requires.add("Boost/1.62.0@lasote/stable")
+        self.requires.add("sqlite3/3.18.0@jgsogo/stable")
+
+    def system_requirements(self):
+        if os_info.is_linux and not RELEASE_VERSION.match(self.version):
+            installer = SystemPackageTool()
+            installer.update()
+            installer.install("bzr")
 
     @property
     def source_dir(self):

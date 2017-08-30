@@ -13,5 +13,11 @@ if __name__ == "__main__":
                                  stable_branch_pattern="master|release\/\d+\.\d+(\.\d+)?",
                                  args="--build=missing")
     builder.add_common_builds()
-    builder.run()
+    filtered_builds = []
+    for settings, options, env_vars, build_requires in builder.builds:
+        if settings["arch"] == "x86_64" and settings["build_type"] == "Release":
+            filtered_builds.append([settings, options, env_vars, build_requires])
+    builder.builds = filtered_builds
 
+    print("{} builds ahead!".format(len(builder.builds)))
+    builder.run()
