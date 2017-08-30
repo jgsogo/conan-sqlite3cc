@@ -45,7 +45,7 @@ matrix:
         env: CONAN_APPLE_CLANG_VERSIONS=8.1
 
 install:
-  - if $CONAN_APPLE_CLANG_VERSIONS; then brew install bazaar; fi
+  - if [ -v CONAN_APPLE_CLANG_VERSIONS]; then brew install bazaar; fi
   - ./.travis/install.sh
 script:
   - ./.travis/run.sh
