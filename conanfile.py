@@ -9,7 +9,7 @@ VERSION = "master"
 RELEASE_VERSION = re.compile(r'^\d+\.\d+(\.\d+)?$')  # Matching version number
 
 
-class SQLite3ccConan(ConanFile):
+class ConanRecipe(ConanFile):
     name = "sqlite3cc"
     version = VERSION
     settings = "os", "compiler", "build_type", "arch"
